@@ -1,0 +1,11 @@
+{% extends 'todo/task_create.html' %}
+
+{% block form_url %}{% url 'todo:view_task' id %}{% endblock form_url %}
+{% block task_name %}{{ name }}{% endblock  %}
+{% block description %}{{ description }}{% endblock  %}
+{% block priority %}{{ priority }}{% endblock  %}
+{% block content2 %}
+    <input type="text" name="op" value="UPDATE" hidden>
+    <input type="text" name="index" value="{{ index }}" hidden>
+    <input type="text" name="id" value="{{ id }}" hidden>
+{% endblock content2 %}

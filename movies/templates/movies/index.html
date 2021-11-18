@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Movies{% endblock title %}Movies
+{% block content %}
+<table class="table table-striped">
+<tr>
+<th scope="table" >poster</th>
+<th scope="table" >name</th>
+<th scope="table" >description</th>
+<th scope="table" >release date</th>
+<th scope="table" >budget</th>
+<ta>
+{% comment %}  {% endcomment %}
+{% for movie in movie_list  %}
+<tr>
+    
+ <td><img src="{{ movie.poster }}"></td>
+ <td>{{ movie.name }}</td>
+ <td>{{ movie.discription  }}</td>
+ <td>{{ movie.release_date }}</td>
+ <td>{{ movie.budget }}</td>
+</tr>
+{% empty %}
+no movies sorry
+{% endfor %}
+</table>
+
+<a type="button" class="btn btn-warning" href={% url "movies:add"%}>+ add</a>
+{% endblock %}
+

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+    {% load crispy_forms_tags %}  
+    <form action="" method="POST" class=".m-sm-auto">
+    {% csrf_token %}
+    {{form | crispy}}
+    <input type="submit" value="submit" class="btn btn-warning mt-3">
+    </form>
+    
+{% endblock %}

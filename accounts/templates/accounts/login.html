@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if message %}
+       <h2> {{ message }} </h2>
+    {% endif %}
+
+    
+    <div class="container">
+    <p class="container w-50">
+    
+    <form action="{% url 'accounts:login' %}" method="POST">
+    <div class="mb-3">
+        <label for="username" class="form-label">User name</label>
+        <input type="text" class="form-control" name="username" id="username" aria-describedby="utername">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {% csrf_token %}
+    </form>
+    </p>
+    Don't have an account <a href={% url 'accounts:signup' %}>sign up <a>
+    </p>
+
+{% endblock content %}

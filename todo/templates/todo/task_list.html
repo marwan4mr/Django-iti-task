@@ -1,0 +1,36 @@
+{% extends "todo/base.html" %}
+
+
+{% comment %}  {% endcomment %}
+{% block content %}
+<h1 class="text-center">Task List</h1>
+<a href="{% url 'movies:home' %}" class="btn btn-secondary pill">« go home</a>
+    <ul>
+        {% for task in my_task_list%}
+            <li class="m-3">
+                id:{{task.id}} name:{{task.name}}
+                <div class="btn-group" role="group">
+                    <a type="button" class="btn btn-primary" href="{% url 'todo:view_task' task.id %}">view</a>
+                    <label type="button" class="btn btn-secondary" for="submit_update_{{task.id}}" >update</label>
+                    <label type="button" class="btn btn-danger" for="submit_delete_{{task.id}}">delete</label>
+                </div>
+                {% comment %} it's a form method delete hack and checkbox hack {% endcomment %}
+                {% comment %} this so the delete button makes a post request with op(operation):delete to task/{{id}} {% endcomment %}
+                <form action="{% url 'todo:view_task' task.id %}" method="POST" style="display: none">
+                {% csrf_token %}
+                <input type="text" name="op" value="DELETE">
+                <input type="submit" id="submit_delete_{{task.id}}">
+                </form>
+                <form action="{% url 'todo:update_task' task.id %}" method="GET" style="display: none">
+                {% csrf_token %}
+                <input type="text" name="op" value="UPDATE">
+                <input type="submit" id="submit_update_{{task.id}}">
+                </form>
+            </li>    
+        {% endfor %}
+    </ul>
+<a href="{% url 'todo:create_task' %}" class="btn btn-warning">
+<span class="h5">+</span> add task</a>
+
+{% endblock content %}
+
